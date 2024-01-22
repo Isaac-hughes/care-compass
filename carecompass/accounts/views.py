@@ -17,7 +17,7 @@ def signup_view(request):
     else:
         form = PatientUserSignUpForm()
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'accounts/signup.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -31,12 +31,15 @@ def login_view(request):
                 return redirect('dashboard')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'accounts/dashboard.html')
 
 def logout_view(request):
     logout(request)
     return redirect('login') 
+
+def landing_view(request):
+    return render(request, 'landing.html')

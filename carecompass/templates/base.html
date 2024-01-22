@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- Common header content -->
+    </header>
+
+    <body>
+      {% block content %}
+      <!-- Page specific content will go here -->
+      {% endblock %}
+    </body>
+
+    <footer>
+      <!-- Common footer content -->
+    </footer>
+  </body>
+</html>
