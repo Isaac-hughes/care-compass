@@ -1,5 +1,7 @@
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import render, redirect
 from .forms import PatientUserSignUpForm
 from .models import PatientUser
@@ -31,5 +33,10 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+@login_required
 def dashboard_view(request):
     return render(request, 'dashboard.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login') 

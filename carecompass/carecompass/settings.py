@@ -70,8 +70,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'carecompass.wsgi.application'
 
+# Authentication
+
 AUTH_USER_MODEL = 'accounts.PatientUser'
 
+# Session management
+
+# Set session to expire in 7 days (7 days * 24 hours * 60 minutes * 60 seconds)
+SESSION_COOKIE_AGE = 7 * 24 * 60 * 60
+
+# Session also expires when browser is closed
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
