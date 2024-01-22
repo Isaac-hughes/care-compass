@@ -11,7 +11,7 @@ def signup_view(request):
         form = PatientUserSignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])  # Set the password
+            user.set_password(form.cleaned_data['password']) 
             user.save()
             return redirect('dashboard') 
     else:
