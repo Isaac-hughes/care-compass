@@ -1,28 +1,48 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="_3-col-display">
-  <div class="col"></div>
   <div class="col">
-    <h1>Logo</h1>
-    <a href="{% url 'login' %}">
-      <button>Login</button>
-    </a>
-    <a href="{% url 'signup' %}">
-      <button class="btn-secondary">Sign Up</button>
-    </a>
-    <div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="212"
-        height="50"
-        viewBox="0 0 212 50"
-        fill="none"
-      >
-        <circle cx="25" cy="25" r="25" fill="#143C72" />
-        <circle cx="187" cy="25" r="25" fill="#3C7CD3" />
-        <circle cx="106" cy="25" r="25" fill="#275A9F" />
-      </svg>
+    <img
+      src="{% static 'assets/images/blue-pattern-2.png' %}"
+      alt="Decorative blue pattern"
+      class="decorative-column"
+    />
+  </div>
+  <div class="col">
+    <div class="content-column">
+      <img
+        src="{% static 'assets/logos/care-compass-logo-blue.svg' %}"
+        alt="Care compass logo"
+        class="logo"
+      />
+      <div class="redirect-buttons">
+        <button>
+          <a href="{% url 'login' %}"> Login </a>
+        </button>
+        <button class="btn-secondary">
+          <a href="{% url 'signup' %}"> Sign Up </a>
+        </button>
+      </div>
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="107"
+          height="25"
+          viewBox="0 0 212 50"
+          fill="none"
+        >
+          <circle cx="25" cy="25" r="25" fill="#143C72" />
+          <circle cx="187" cy="25" r="25" fill="#3C7CD3" />
+          <circle cx="106" cy="25" r="25" fill="#275A9F" />
+        </svg>
+      </div>
     </div>
   </div>
-  <div class="col"></div>
+  <div class="col">
+    <img
+      src="{% static 'assets/images/blue-pattern-3.png' %}"
+      alt="Decorative blue pattern"
+      class="decorative-column"
+    />
+  </div>
 </div>
 {% endblock %}

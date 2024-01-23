@@ -1,18 +1,5 @@
 @import url("layout.css");
 @import url("buttons.css");
-
-@import url("landing,css");
-
-/* Global styles */
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-}
+@import url("forms.css");
+@import url("logos.css");
+@import url("landing.css");
