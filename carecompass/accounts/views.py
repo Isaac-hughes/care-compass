@@ -4,20 +4,20 @@ from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, redirect
 from django.template import RequestContext
-from .forms import PatientUserSignUpForm
+from .forms import PatientSignUpForm
 
 def signup_view(request):
     if request.user.is_authenticated:
         return redirect('dashboard')
     if request.method == 'POST':
-        form = PatientUserSignUpForm(request.POST)
+        form = PatientSignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password']) 
             user.save()
             return redirect('dashboard') 
     else:
-        form = PatientUserSignUpForm()
+        form = PatientSignUpForm()
 
     return render(request, 'accounts/signup.html', {'form': form})
 

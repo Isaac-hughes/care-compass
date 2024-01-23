@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-class PatientUserManager(BaseUserManager):
+class PatientAdministrator(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('Users must have an email address')
@@ -10,7 +10,7 @@ class PatientUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class PatientUser(AbstractBaseUser):
+class Patient(AbstractBaseUser):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
@@ -18,7 +18,7 @@ class PatientUser(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    objects = PatientUserManager()
+    objects = PatientAdministrator()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'gp_code']
