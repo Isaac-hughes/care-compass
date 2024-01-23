@@ -3,8 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, redirect
+from django.template import RequestContext
 from .forms import PatientUserSignUpForm
-from .models import PatientUser
 
 def signup_view(request):
     if request.user.is_authenticated:
@@ -49,3 +49,10 @@ def dashboard_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login') 
+
+def custom_handler404(request, exception):
+    return render(request, '404.html', {}, status=404)
+
+
+def custom_handler500(request):
+    return render(request, '500.html', {}, status=404)
