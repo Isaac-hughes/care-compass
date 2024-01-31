@@ -9,4 +9,5 @@ handler500 = custom_handler500
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
+    path('appointments/', include('appointments.urls')),
 ]

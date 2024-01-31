@@ -6,6 +6,9 @@
   {% endfor %}
   <button type="submit">Login</button>
 </form>
-<p>Don't have an account? <a href="{% url 'signup' %}">Signup here</a></p>
+<p>
+  Don't have an account?
+  <a href="{% url 'appointments:signup' %}">Signup here</a>
+</p>
 
 {% endblock %}
