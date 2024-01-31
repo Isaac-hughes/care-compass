@@ -58,7 +58,7 @@ WSGI_APPLICATION = 'carecompass.wsgi.application'
 
 # Authentication
 
-AUTH_USER_MODEL = 'accounts.Patient'
+AUTH_USER_MODEL = 'accounts.User'
 
 # Session management
 
