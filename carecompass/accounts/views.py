@@ -7,9 +7,13 @@ from django.template import RequestContext
 from .forms import PatientSignUpForm, AdminSignUpForm
 from .models import User
 
+# route constants
+LOGIN = 'accounts:login'
+DASHBOARD = 'accounts:dashboard'
+
 def signup_view(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect(DASHBOARD)
     if request.method == 'POST':
         form = PatientSignUpForm(request.POST)
         if form.is_valid():
@@ -17,7 +21,7 @@ def signup_view(request):
             user.set_password(form.cleaned_data['password']) 
             user.save()
             login(request, user)
-            return redirect('dashboard') 
+            return redirect(DASHBOARD) 
     else:
         form = PatientSignUpForm()
 
@@ -25,7 +29,7 @@ def signup_view(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect(DASHBOARD)
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -34,14 +38,14 @@ def login_view(request):
             user = authenticate(username=username, password=raw_password)
             if user is not None:
                 login(request, user)
-                return redirect('dashboard')
+                return redirect(DASHBOARD)
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
 
 def landing_view(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect(DASHBOARD)
     return render(request, 'landing.html')
 
 @login_required
@@ -50,12 +54,12 @@ def dashboard_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login') 
+    return redirect(LOGIN) 
 
 @login_required
 def create_admin_view(request):
     if not request.user.is_admin:
-        return redirect('dashboard')  # or some error page
+        return redirect(DASHBOARD)  # or some error page
 
     if request.method == 'POST':
         form = AdminSignUpForm(request.POST)
