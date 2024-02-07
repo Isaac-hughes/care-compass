@@ -1,39 +1,55 @@
 {% extends 'base.html' %} {% block content %}
-<div class="appointment-wrapper">
-  <div class="wrap">
-    <div class="appointment-type-select-pane">
-      <div class="appointment-type">Telephone</div>
-      <div class="appointment-type">In Person</div>
-      <div class="appointment-type">Virtual</div>
+<div class="appointment-container">
+  <div class="appointment-form-wrapper">
+    <h1>Book an Appointment</h1>
+    <div class="appointment-type-select-pane pane">
+      <h2>Select an appointment type</h2>
+      <div class="options-wrapper">
+        <div class="appointment-type">Telephone</div>
+        <div class="appointment-type">In Person</div>
+        <div class="appointment-type">Virtual</div>
+      </div>
     </div>
-    <div class="date-select-pane">
+    <div class="date-select-pane pane">
       <div class="appointment-information">
-        <div class="appointment-type-selected"></div>
-        <div class="change-appointment-type button">Change</div>
+        <div>
+          <div class="appointment-type-selected"></div>
+          <div class="change-appointment-type change-button">Change</div>
+        </div>
       </div>
       <div class="date-select">
         <input class="date-input" type="date" />
       </div>
     </div>
-    <div class="time-select-pane">
+    <div class="time-select-pane pane">
       <div class="appointment-information">
-        <div class="appointment-type-selected"></div>
-        <div class="change-appointment-type button">Change</div>
-        <div class="date-selected"></div>
-        <div class="change-date button">Change</div>
+        <div>
+          <div class="appointment-type-selected"></div>
+          <div class="change-appointment-type change-button">Change</div>
+        </div>
+        <div>
+          <div class="date-selected"></div>
+          <div class="change-date change-button">Change</div>
+        </div>
       </div>
       <div class="time-select">
         <input class="time-input" type="time" />
       </div>
     </div>
-    <div class="contact-number-pane">
+    <div class="contact-number-pane pane">
       <div class="appointment-information">
-        <div class="appointment-type-selected"></div>
-        <div class="change-appointment-type button">Change</div>
-        <div class="date-selected"></div>
-        <div class="change-date button">Change</div>
-        <div class="time-selected"></div>
-        <div class="change-time button">Change</div>
+        <div>
+          <div class="appointment-type-selected"></div>
+          <div class="change-appointment-type change-button">Change</div>
+        </div>
+        <div>
+          <div class="date-selected"></div>
+          <div class="change-date change-button">Change</div>
+        </div>
+        <div>
+          <div class="time-selected"></div>
+          <div class="change-time change-button">Change</div>
+        </div>
       </div>
       <div class="contact-number">
         <input
@@ -43,16 +59,24 @@
         />
       </div>
     </div>
-    <div class="additional-info-pane">
+    <div class="additional-info-pane pane">
       <div class="appointment-information">
-        <div class="appointment-type-selected"></div>
-        <div class="change-appointment-type button">Change</div>
-        <div class="date-selected"></div>
-        <div class="change-date button">Change</div>
-        <div class="time-selected"></div>
-        <div class="change-time button">Change</div>
-        <div class="contact-number-selected"></div>
-        <div class="change-contact-number button">Change</div>
+        <div>
+          <div class="appointment-type-selected"></div>
+          <div class="change-appointment-type change-button">Change</div>
+        </div>
+        <div>
+          <div class="date-selected"></div>
+          <div class="change-date change-button">Change</div>
+        </div>
+        <div>
+          <div class="time-selected"></div>
+          <div class="change-time change-button">Change</div>
+        </div>
+        <div>
+          <div class="contact-number-selected"></div>
+          <div class="change-contact-number change-button">Change</div>
+        </div>
       </div>
       <div class="additional-information">
         <input
@@ -63,7 +87,7 @@
         <button class="appointment-submit">Submit appointment</button>
       </div>
     </div>
-    <div class="summary-pane">
+    <div class="summary-pane pane">
       <p>Summary</p>
       <div class="appointment-summary">
         <div class="appointment-type-selected"></div>
