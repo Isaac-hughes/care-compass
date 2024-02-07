@@ -1,8 +1,79 @@
 {% extends 'base.html' %} {% block content %}
-
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Book Appointment</button>
-</form>
+<div class="appointment-wrapper">
+  <div class="wrap">
+    <div class="appointment-type-select-pane">
+      <div class="appointment-type">Telephone</div>
+      <div class="appointment-type">In Person</div>
+      <div class="appointment-type">Virtual</div>
+    </div>
+    <div class="date-select-pane">
+      <div class="appointment-information">
+        <div class="appointment-type-selected"></div>
+        <div class="change-appointment-type button">Change</div>
+      </div>
+      <div class="date-select">
+        <input class="date-input" type="date" />
+      </div>
+    </div>
+    <div class="time-select-pane">
+      <div class="appointment-information">
+        <div class="appointment-type-selected"></div>
+        <div class="change-appointment-type button">Change</div>
+        <div class="date-selected"></div>
+        <div class="change-date button">Change</div>
+      </div>
+      <div class="time-select">
+        <input class="time-input" type="time" />
+      </div>
+    </div>
+    <div class="contact-number-pane">
+      <div class="appointment-information">
+        <div class="appointment-type-selected"></div>
+        <div class="change-appointment-type button">Change</div>
+        <div class="date-selected"></div>
+        <div class="change-date button">Change</div>
+        <div class="time-selected"></div>
+        <div class="change-time button">Change</div>
+      </div>
+      <div class="contact-number">
+        <input
+          class="contact-number-input"
+          type="text"
+          placeholder="Contact Number"
+        />
+      </div>
+    </div>
+    <div class="additional-info-pane">
+      <div class="appointment-information">
+        <div class="appointment-type-selected"></div>
+        <div class="change-appointment-type button">Change</div>
+        <div class="date-selected"></div>
+        <div class="change-date button">Change</div>
+        <div class="time-selected"></div>
+        <div class="change-time button">Change</div>
+        <div class="contact-number-selected"></div>
+        <div class="change-contact-number button">Change</div>
+      </div>
+      <div class="additional-information">
+        <input
+          class="additional-info-input"
+          type="textArea"
+          placeholder="Additional Information"
+        />
+        <button class="appointment-submit">Submit appointment</button>
+      </div>
+    </div>
+    <div class="summary-pane">
+      <p>Summary</p>
+      <div class="appointment-summary">
+        <div class="appointment-type-selected"></div>
+        <div class="date-selected"></div>
+        <div class="time-selected"></div>
+        <div class="contact-number-selected"></div>
+        <div class="additional-info-selected"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

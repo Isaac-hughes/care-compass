@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %}
+<button>
+  <a href="{% url 'appointments:book_appointment' %}">Book an Appointment</a>
+</button>
 <h2>Your Appointments</h2>
 {% for appointment in appointments %}
-<p>
-  Appointment on {{ appointment.date_time }} for {{ appointment.duration }}
-  minutes
-</p>
+<p>{{appointment}}, created at: {{appointment.created_at}}</p>
 <!-- Add more details as needed -->
 {% endfor %} {% endblock %}

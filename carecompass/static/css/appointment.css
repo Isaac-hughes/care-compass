@@ -1,0 +1,16 @@
+/* initial hidden states */
+.date-select-pane {
+  display: none;
+}
+.time-select-pane {
+  display: none;
+}
+.contact-number-pane {
+  display: none;
+}
+.additional-info-pane {
+  display: none;
+}
+.summary-pane {
+  display: none;
+}
