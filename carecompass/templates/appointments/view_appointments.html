@@ -4,6 +4,41 @@
 </button>
 <h2>Your Appointments</h2>
 {% for appointment in appointments %}
-<p>{{appointment}}, created at: {{appointment.created_at}}</p>
-<!-- Add more details as needed -->
+<p>
+  {{ appointment }}, created at: {{ appointment.created_at }}
+  <!-- Delete button triggering the modal -->
+  <button
+    type="button"
+    class="delete-btn"
+    data-appointment-id="{{ appointment.id }}"
+  >
+    Delete
+  </button>
+</p>
+
+<div
+  id="deleteModal{{ appointment.id }}"
+  class="modal-backdrop"
+  style="display: none"
+>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Confirm Deletion</h2>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this appointment?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="close-btn">Cancel</button>
+      <form
+        method="post"
+        action="{% url 'appointments:delete_appointment' appointment.id %}"
+      >
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
 {% endfor %} {% endblock %}
