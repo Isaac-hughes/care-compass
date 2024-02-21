@@ -10,3 +10,11 @@ care-compass-env\Scripts\activate
 # Install project dependencies
 
 pip install -r requirements.txt
+
+# Run application
+
+py manage.py runserver
+
+# Create admin account from terminal
+
+py manage.py addadmin

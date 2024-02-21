@@ -3,8 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, redirect
-from django.template import RequestContext
-from .forms import PatientSignUpForm, AdminSignUpForm
+from .forms import PatientSignUpForm, AdminSignUpForm, PatientUpdateForm
 from .models import User
 
 # route constants
@@ -75,6 +74,19 @@ def create_admin_view(request):
         form = AdminSignUpForm()
 
     return render(request, 'accounts/create_admin.html', {'form': form})
+
+@login_required
+def account_management_view(request):
+    if request.method == 'POST':
+        form = PatientUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page or back to the account page with a success message
+            return redirect('accounts:account_management')
+    else:
+        form = PatientUpdateForm(instance=request.user)
+
+    return render(request, 'accounts/account_management.html', {'form': form})
 
 def custom_handler404(request, exception):
     return render(request, '404.html', {}, status=404)

@@ -27,6 +27,12 @@ class AdminSignUpForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
+class PatientUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'gp_code']
+
+# used by the admin to create a new users
 class UserCreationForm(DjangoUserCreationForm):
     class Meta(DjangoUserCreationForm.Meta):
         model = User
