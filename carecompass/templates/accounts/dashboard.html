@@ -1,7 +1,4 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Dashboard</h1>
 <p>Welcome {{ user.first_name }} to your dashboard!</p>
-<a href="{% url 'accounts:logout' %}">Logout</a>
-<a href="{% url 'appointments:book_appointment' %}">Book an Appointment</a>
-<a href="{% url 'appointments:view_appointments' %}">View your Appointments</a>
 {% endblock %}

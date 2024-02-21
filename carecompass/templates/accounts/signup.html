@@ -1,13 +1,31 @@
-{% extends 'base.html' %} {% block content %}
-<h2>Signup</h2>
-<form method="post">
-  {% csrf_token %} {% for field in form %}
-  <div class="form-group">{{ field.label_tag }} {{ field }}</div>
-  {% endfor %}
-  <button type="submit">Signup</button>
-</form>
-<p>
-  Already have an account?
-  <a href="{% url 'accounts:login' %}">Login here</a>
-</p>
-{% endblock %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <h2>Signup</h2>
+      <form method="post">
+        {% csrf_token %} {% for field in form %}
+        <div class="form-group">{{ field.label_tag }} {{ field }}</div>
+        {% endfor %}
+        <button type="submit">Signup</button>
+      </form>
+      <p>
+        Already have an account?
+        <a href="{% url 'accounts:login' %}">Login here</a>
+      </p>
+    </main>
+  </body>
+  <script src="{% static 'js/appointment-booking.js' %}"></script>
+</html>

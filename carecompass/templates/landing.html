@@ -1,48 +1,64 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<div class="_3-col-display">
-  <div class="col">
-    <img
-      src="{% static 'assets/images/blue-pattern-2.png' %}"
-      alt="Decorative blue pattern"
-      class="decorative-column"
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
     />
-  </div>
-  <div class="col">
-    <div class="content-column">
-      <img
-        src="{% static 'assets/logos/care-compass-logo-blue.svg' %}"
-        alt="Care compass logo"
-        class="logo"
-      />
-      <div class="redirect-buttons">
-        <button>
-          <a href="{% url 'accounts:login' %}"> Login </a>
-        </button>
-        <button class="btn-secondary">
-          <a href="{% url 'accounts:signup' %}"> Sign Up </a>
-        </button>
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="_3-col-display">
+      <div class="col">
+        <img
+          src="{% static 'assets/images/blue-pattern-2.png' %}"
+          alt="Decorative blue pattern"
+          class="decorative-column"
+        />
       </div>
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="107"
-          height="25"
-          viewBox="0 0 212 50"
-          fill="none"
-        >
-          <circle cx="25" cy="25" r="25" fill="#143C72" />
-          <circle cx="187" cy="25" r="25" fill="#3C7CD3" />
-          <circle cx="106" cy="25" r="25" fill="#275A9F" />
-        </svg>
+      <div class="col">
+        <div class="content-column">
+          <img
+            src="{% static 'assets/logos/care-compass-logo-blue.svg' %}"
+            alt="Care compass logo"
+            class="logo"
+          />
+          <div class="redirect-buttons">
+            <button>
+              <a href="{% url 'accounts:login' %}"> Login </a>
+            </button>
+            <button class="btn-secondary">
+              <a href="{% url 'accounts:signup' %}"> Sign Up </a>
+            </button>
+          </div>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="107"
+              height="25"
+              viewBox="0 0 212 50"
+              fill="none"
+            >
+              <circle cx="25" cy="25" r="25" fill="#143C72" />
+              <circle cx="187" cy="25" r="25" fill="#3C7CD3" />
+              <circle cx="106" cy="25" r="25" fill="#275A9F" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <img
+          src="{% static 'assets/images/blue-pattern-3.png' %}"
+          alt="Decorative blue pattern"
+          class="decorative-column"
+        />
       </div>
     </div>
-  </div>
-  <div class="col">
-    <img
-      src="{% static 'assets/images/blue-pattern-3.png' %}"
-      alt="Decorative blue pattern"
-      class="decorative-column"
-    />
-  </div>
-</div>
-{% endblock %}
+  </body>
+  <script src="{% static 'js/appointment-booking.js' %}"></script>
+</html>
