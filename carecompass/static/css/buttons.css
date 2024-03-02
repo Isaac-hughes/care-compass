@@ -17,6 +17,18 @@ button a {
   height: 100%;
 }
 
+button:hover {
+  background: #1f4e8f;
+}
+
 .btn-secondary {
   background: #000000;
+}
+
+.btn-secondary:hover {
+  background: #333333;
+}
+
+.submit-btn {
+  width: 100%;
 }

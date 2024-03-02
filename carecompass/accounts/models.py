@@ -29,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_admin = models.BooleanField(default=False)  # Determines if the user is an administrator
-    is_staff = models.BooleanField(default=False)  # Determines if the user can access the Django admin
+    is_staff = models.BooleanField(default=False)  
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
