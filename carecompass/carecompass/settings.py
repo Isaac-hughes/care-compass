@@ -13,6 +13,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+# Redirect to login page if user is not authenticated
+LOGIN_URL = '/login/'
+
+# Redirect to dashboard if user is authenticated
+# LOGIN_REDIRECT_URL = '/dashboard/'
 
 # Application definition
 
