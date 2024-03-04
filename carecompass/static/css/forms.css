@@ -67,3 +67,8 @@ form {
   align-items: center;
   width: 90%;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+}
