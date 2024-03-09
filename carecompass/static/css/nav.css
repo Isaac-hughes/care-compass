@@ -5,27 +5,51 @@ nav {
   align-items: center;
   width: 15%;
   height: 100%;
-  background-color: #f2f2f2;
   padding: 0 2rem;
+}
+
+.nav-logo-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-logo-wrapper img {
+  width: 80%;
+  height: auto;
 }
 
 .nav-item {
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
+  background-color: #ffffff;
+  color: #143c72;
+  fill: #143c72;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 
-.nav-item svg {
-  width: 20%;
-  height: auto;
+.nav-item:hover {
+  background-color: #143c72;
+  color: #ffffff;
+  fill: #ffffff;
 }
 
 .nav-item a {
   text-decoration: none;
-  color: #000;
-  font-size: 1.2rem;
-  font-weight: 600;
-  width: 70%;
-  text-align: center;
+  color: inherit;
+  font-size: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-item a svg {
+  width: 12%;
+  height: auto;
+  fill: inherit;
 }

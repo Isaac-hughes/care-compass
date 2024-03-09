@@ -32,7 +32,6 @@ class PatientUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email', 'gp_code']
 
-# Used by the admin to create a new users
 class UserCreationForm(DjangoUserCreationForm):
     class Meta(DjangoUserCreationForm.Meta):
         model = User

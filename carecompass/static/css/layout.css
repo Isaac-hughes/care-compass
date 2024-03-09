@@ -9,13 +9,17 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  background-image: url("../assets/images/background-pattern-1.jpg");
 }
 
 main {
   display: flex;
   flex-direction: column;
-  width: 85%;
+  width: calc(85% - 60px);
   padding: 2rem;
+  margin: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
 /* columns */
@@ -87,4 +91,8 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.white-bg {
+  background: #ffffff !important;
 }

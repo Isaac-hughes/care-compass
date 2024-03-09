@@ -20,7 +20,7 @@ def book_appointment_view(request):
             appointment = form.save(commit=False)
             appointment.user = request.user
             appointment.save()
-            return redirect(VIEW_APPOINTMENTS)  # Redirect to view appointments
+            return redirect(VIEW_APPOINTMENTS) 
     else:
         form = AppointmentForm()
     return render(request, 'appointments/book_appointment.html', {'form': form})
@@ -36,7 +36,7 @@ def admin_view_appointments(request):
         appointments = Appointment.objects.all().order_by('date_time')
         return render(request, 'appointments/admin_view_appointments.html', {'appointments': appointments})
     else:
-        return redirect('some_error_page')  # or handle permission denied
+        return redirect('some_error_page')  
 
 @login_required
 def create_appointment(request):
@@ -45,12 +45,10 @@ def create_appointment(request):
         user = request.user
         appointment_type = data.get('appointmentType')
         date_time_str = f"{data.get('appointmentDate')} {data.get('appointmentTime')}"
-        # Ensure to handle the timezone conversion properly here
         date_time = parse_datetime(date_time_str)
         contact_number = data.get('contactNumber')
         user_notes = data.get('additionalInfo')
         
-        # Assuming you're storing datetime in UTC and converting based on the user's timezone
         date_time = pytz.utc.localize(date_time)
         
         appointment = Appointment.objects.create(
@@ -66,10 +64,9 @@ def create_appointment(request):
 
 @login_required
 def delete_appointment(request, appointment_id):
-    appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)  # Ensures ownerships
+    appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)  
     if request.method == "POST":
         appointment.delete()
         return redirect(VIEW_APPOINTMENTS)
     else:
-        # Prevent deletion if not POST request
         return redirect(VIEW_APPOINTMENTS)

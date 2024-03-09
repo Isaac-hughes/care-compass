@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <div class="appointment-container">
+  <h1>Book an Appointment</h1>
   <div class="appointment-form-wrapper">
-    <h1>Book an Appointment</h1>
-    <div class="appointment-type-select-pane pane">
+    <div class="appointment-type-select-pane pane active">
       <h2>Select an appointment type</h2>
       <div class="options-wrapper">
         <div class="appointment-type">Telephone</div>
@@ -35,7 +35,13 @@
         </div>
       </div>
       <div class="time-select">
-        <input class="time-input" type="time" />
+        <input
+          class="time-input"
+          type="time"
+          step="900"
+          min="09:00"
+          max="17:00"
+        />
       </div>
     </div>
     <div class="contact-number-pane pane">

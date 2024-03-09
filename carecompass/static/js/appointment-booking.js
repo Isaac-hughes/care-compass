@@ -11,12 +11,15 @@ let appointmentDetails = {
 
 const changePhase = (newPhase) => {
   phase = newPhase;
-  $(".appointment-type-select-pane").hide();
-  $(".date-select-pane").hide();
-  $(".time-select-pane").hide();
-  $(".contact-number-pane").hide();
-  $(".additional-info-pane").hide();
-  $(`.${newPhase}-pane`).show();
+  // Hide all panes
+  $(".pane").each(function () {
+    $(this).removeClass("active");
+  });
+
+  // Show the current pane with a slight delay for the transition
+  setTimeout(() => {
+    $(`.${newPhase}-pane`).addClass("active");
+  }, 10); // Small delay to ensure the class addition triggers the transition
 };
 
 $(".appointment-type").on("click", function () {
@@ -50,25 +53,23 @@ $(".contact-number-input").on("change", function () {
 $(".appointment-submit").on("click", function () {
   const additionalInfo = $(".additional-info-input").val();
   appointmentDetails.additionalInfo = additionalInfo;
-  console.log(appointmentDetails);
+  $(".additional-info-selected").text(additionalInfo);
   // Submit form data to Django
   $.ajax({
     type: "POST",
-    url: "/appointments/create/", // Update this URL to match the Django URL
+    url: "/appointments/create/",
     data: {
       ...appointmentDetails,
       csrfmiddlewaretoken: $('meta[name="csrf-token"]').attr("content"),
     },
     success: function (response) {
-      console.log("Appointment created successfully.", response);
-      // Redirect or update the UI as needed
+      // do nothing
+      changePhase("summary");
     },
     error: function (error) {
       console.log("An error occurred.", error);
     },
   });
-  $(".additional-info-selected").text(additionalInfo);
-  changePhase("summary");
 });
 
 const resetFields = (fields) => {

@@ -59,7 +59,7 @@ def logout_view(request):
 @login_required
 def create_admin_view(request):
     if not request.user.is_admin:
-        return redirect(DASHBOARD)  # or some error page
+        return redirect(DASHBOARD)
 
     if request.method == 'POST':
         form = AdminSignUpForm(request.POST)
@@ -70,7 +70,7 @@ def create_admin_view(request):
                 first_name=form.cleaned_data['first_name'],
                 last_name=form.cleaned_data['last_name']
             )
-            # Redirect or indicate success
+            
     else:
         form = AdminSignUpForm()
 
@@ -82,7 +82,6 @@ def account_management_view(request):
         form = PatientUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            # Redirect to a success page or back to the account page with a success message
             return redirect('accounts:account_management')
     else:
         form = PatientUpdateForm(instance=request.user)

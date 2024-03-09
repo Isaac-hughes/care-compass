@@ -1,25 +1,8 @@
-/* initial hidden states */
-.date-select-pane {
-  display: none;
-}
-.time-select-pane {
-  display: none;
-}
-.contact-number-pane {
-  display: none;
-}
-.additional-info-pane {
-  display: none;
-}
-.summary-pane {
-  display: none;
-}
-
 .appointment-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   position: relative;
@@ -29,15 +12,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .pane {
+  position: absolute;
+  visibility: none;
   border: 2px solid #f2f2f2;
   padding: 2rem;
   min-width: 50vw;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.7s;
+}
+
+.pane.active {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0);
 }
 
 .options-wrapper {
