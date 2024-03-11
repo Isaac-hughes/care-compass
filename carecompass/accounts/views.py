@@ -31,7 +31,6 @@ def login_view(request):
         return redirect(DASHBOARD)
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
-        print(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')

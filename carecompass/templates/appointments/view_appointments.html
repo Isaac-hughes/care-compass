@@ -2,19 +2,35 @@
 <button>
   <a href="{% url 'appointments:book_appointment' %}">Book an Appointment</a>
 </button>
-<h2>Your Appointments</h2>
+<table>
+  <tr>
+    <th>Appointment type</th>
+    <th>Appointment date</th>
+    <th>Appointment time</th>
+    <th>Contact number</th>
+    <th>Notes</th>
+    <th>Actions</th>
+  </tr>
+  {% for appointment in appointments %}
+  <tr>
+    <td>{{ appointment.appointment_type }}</td>
+    <td>{{ appointment.date }}</td>
+    <td>{{ appointment.time }}</td>
+    <td>{{ appointment.contact_number }}</td>
+    <td>{{ appointment.user_notes }}</td>
+    <td>
+      <button
+        type="button"
+        class="delete-btn"
+        data-appointment-id="{{ appointment.id }}"
+      >
+        Delete
+      </button>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 {% for appointment in appointments %}
-<p>
-  {{ appointment }}, created at: {{ appointment.created_at }}
-  <!-- Delete button triggering the modal -->
-  <button
-    type="button"
-    class="delete-btn"
-    data-appointment-id="{{ appointment.id }}"
-  >
-    Delete
-  </button>
-</p>
 
 <div
   id="deleteModal{{ appointment.id }}"
