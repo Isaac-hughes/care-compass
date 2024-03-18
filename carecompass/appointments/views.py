@@ -4,7 +4,7 @@ from .models import Appointment
 from django.http import JsonResponse
 from .models import Appointment
 from django.utils.dateparse import parse_date, parse_time
-import pytz
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect
 
@@ -27,6 +27,8 @@ def book_appointment_view(request):
 
 @login_required
 def view_appointments(request):
+    if request.user.is_admin:
+        return redirect('appointments:admin_view_appointments')
     appointments = Appointment.objects.filter(user=request.user).order_by('date')
     return render(request, 'appointments/view_appointments.html', {'appointments': appointments})
 
@@ -61,12 +63,35 @@ def create_appointment(request):
         return JsonResponse({'status': 'success', 'appointment_id': appointment.id})
     else:
         return JsonResponse({'status': 'error'}, status=400)
+    
+@login_required
+def edit_appointment(request, appointment_id):
+    if not request.user.is_admin:
+        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+    else:
+        appointment = get_object_or_404(Appointment, id=appointment_id)
+
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST, instance=appointment)
+        if form.is_valid():
+            form.save()
+            return redirect(VIEW_APPOINTMENTS)
+    else:
+        form = AppointmentForm(instance=appointment)
+
+    return render(request, 'appointments/edit_appointment.html', {'form': form})
 
 @login_required
 def delete_appointment(request, appointment_id):
-    appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)  
+    if not request.user.is_admin:
+        return redirect('some_error_page')
+
+    appointment = get_object_or_404(Appointment, id=appointment_id)  
     if request.method == "POST":
         appointment.delete()
-        return redirect(VIEW_APPOINTMENTS)
+        messages.success(request, "Appointment deleted successfully.")
+        return redirect('appointments:admin_view_appointments')
     else:
-        return redirect(VIEW_APPOINTMENTS)
+        messages.error(request, "You do not have permission to delete this appointment.")
+    
+    return redirect('appointments:admin_view_appointments')

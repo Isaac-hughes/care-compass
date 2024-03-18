@@ -82,7 +82,6 @@ $(".appointment-submit").on("click", function () {
       csrfmiddlewaretoken: $('meta[name="csrf-token"]').attr("content"),
     },
     success: function (response) {
-      // do nothing
       changePhase("summary");
     },
     error: function (error) {

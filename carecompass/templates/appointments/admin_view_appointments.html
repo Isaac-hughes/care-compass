@@ -1,5 +1,57 @@
 {% extends 'base.html' %} {% block content %}
+<button>
+  <a href="{% url 'appointments:book_appointment' %}">Book an Appointment</a>
+</button>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Appointment type</th>
+    <th>Appointment date</th>
+    <th>Appointment time</th>
+    <th>Contact number</th>
+    <th>Notes</th>
+    <th>Actions</th>
+  </tr>
+  {% for appointment in appointments %}
+  <tr>
+    <td>{{ appointment.user }}</td>
+    <td>{{ appointment.appointment_type }}</td>
+    <td>{{ appointment.date }}</td>
+    <td>{{ appointment.time }}</td>
+    <td>{{ appointment.contact_number }}</td>
+    <td>{{ appointment.user_notes }}</td>
+    <td>
+        <a href="{% url 'appointments:edit_appointment' appointment.id %}" class="edit-btn">Edit</a>
+        <button type="button" class="delete-btn" data-appointment-id="{{ appointment.id }}">Delete</button>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% for appointment in appointments %}
 
-<p>Admin view</p>
-
-{% endblock %}
+<div
+  id="deleteModal{{ appointment.id }}"
+  class="modal-backdrop"
+  style="display: none"
+>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Confirm Deletion</h2>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this appointment?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="close-btn">Cancel</button>
+      <form
+        method="post"
+        action="{% url 'appointments:delete_appointment' appointment.id %}"
+      >
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endfor %} {% endblock %}

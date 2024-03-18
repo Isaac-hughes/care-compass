@@ -1,4 +1,6 @@
 {% extends 'base.html' %} {% block content %}
+
+{% if not user.is_admin %}
 <h1>Dashboard</h1>
 <p>Welcome {{ user.first_name }} to your dashboard!</p>
 <h2>Next appointment</h2>
@@ -7,5 +9,15 @@
 {% else %}
 <p>You have no upcoming appointments.</p>
 {% endif %}
+{% endif %}
+
+{% if user.is_admin %}
+<h1>Dashboard</h1>
+<p>Welcome {{ user.first_name }} to your dashboard!</p>
+
+{% endif %}
+
+
+
 
 {% endblock %}
