@@ -36,6 +36,25 @@ $(".date-input").on("change", function () {
   changePhase("time-select");
 });
 
+const start = 9;
+const end = 16;
+const interval = 15;
+
+for (let hour = start; hour <= end; hour++) {
+  for (let minute = 0; minute < 60; minute += interval) {
+    let timeValue = `${hour.toString().padStart(2, "0")}:${minute
+      .toString()
+      .padStart(2, "0")}`;
+    let amPm = hour >= 12 ? "PM" : "AM";
+    let displayTime = `${hour > 12 ? hour - 12 : hour}:${minute
+      .toString()
+      .padStart(2, "0")} ${amPm}`;
+    $("#time-input").append(
+      `<option value="${timeValue}">${displayTime}</option>`
+    );
+  }
+}
+
 $(".time-input").on("change", function () {
   const selectedTime = this.value;
   appointmentDetails.appointmentTime = selectedTime;

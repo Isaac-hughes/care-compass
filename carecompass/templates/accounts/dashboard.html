@@ -1,4 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Dashboard</h1>
 <p>Welcome {{ user.first_name }} to your dashboard!</p>
+<h2>Next appointment</h2>
+{% if next_appointment %}
+<p>Your next appointment is on <strong>{{ next_appointment }}</strong>.</p>
+{% else %}
+<p>You have no upcoming appointments.</p>
+{% endif %}
+
 {% endblock %}

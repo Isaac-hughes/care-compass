@@ -67,26 +67,28 @@
               <label for="{{ form.username.id_for_label }}" class="form-label"
                 >Email:</label
               >
-              <input
-                type="email"
-                name="{{ form.username.html_name }}"
-                id="{{ form.username.id_for_label }}"
-                class="form-input"
-                value="{{ form.username.value|default_if_none:'' }}"
-                placeholder="Please enter your email address"
-              />
+              <div class="form-input">
+                <input
+                  type="email"
+                  name="{{ form.username.html_name }}"
+                  id="{{ form.username.id_for_label }}"
+                  value="{{ form.username.value|default_if_none:'' }}"
+                  placeholder="Please enter your email address"
+                />
+              </div>
             </div>
             <div class="form-group">
               <label for="{{ form.password.id_for_label }}" class="form-label"
                 >Password:</label
               >
-              <input
-                type="password"
-                name="{{ form.password.html_name }}"
-                id="{{ form.password.id_for_label }}"
-                class="form-input"
-                placeholder="Please enter your password"
-              />
+              <div class="form-input">
+                <input
+                  type="password"
+                  name="{{ form.password.html_name }}"
+                  id="{{ form.password.id_for_label }}"
+                  placeholder="Please enter your password"
+                />
+              </div>
             </div>
             <div class="submit-btn-wrapper">
               <button type="submit" class="btn-secondary submit-btn">

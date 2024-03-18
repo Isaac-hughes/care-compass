@@ -1,10 +1,10 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-
 from django.shortcuts import render, redirect
-from .forms import PatientSignUpForm, AdminSignUpForm, PatientUpdateForm
-from .models import User
+from datetime import datetime
+from .forms import PatientSignUpForm, PatientUpdateForm
+from appointments.models import Appointment
 
 # route constants
 LOGIN = 'accounts:login'
@@ -49,31 +49,14 @@ def landing_view(request):
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'accounts/dashboard.html')
+    next_appointment = Appointment.objects.order_by('date', 'time').first()
+    
+    return render(request, 'accounts/dashboard.html', {'next_appointment': next_appointment})
 
 def logout_view(request):
     logout(request)
     return redirect(LOGIN) 
 
-@login_required
-def create_admin_view(request):
-    if not request.user.is_admin:
-        return redirect(DASHBOARD)
-
-    if request.method == 'POST':
-        form = AdminSignUpForm(request.POST)
-        if form.is_valid():
-            User.objects.create_administrator(
-                email=form.cleaned_data['email'],
-                password=form.cleaned_data['password'],
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name']
-            )
-            
-    else:
-        form = AdminSignUpForm()
-
-    return render(request, 'accounts/create_admin.html', {'form': form})
 
 @login_required
 def account_management_view(request):

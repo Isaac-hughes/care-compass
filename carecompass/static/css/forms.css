@@ -47,7 +47,7 @@ form {
   font-size: 0.8em;
 }
 
-.form-input {
+.form-input input {
   width: calc(100% - 20px);
   padding: 10px;
   border-radius: 6px;
@@ -57,7 +57,7 @@ form {
   border: none;
 }
 
-.form-input::placeholder {
+.form-input input::placeholder {
   font-size: 10px;
 }
 

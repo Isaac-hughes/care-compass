@@ -9,56 +9,57 @@
           <label for="{{ form.first_name.id_for_label }}" class="form-label"
             >First Name:</label
           >
-          <input
-            type="text"
-            name="{{ form.first_name.html_name }}"
-            id="{{ form.first_name.id_for_label }}"
-            class="form-input"
-            value="{{ form.first_name.value|default_if_none:'' }}"
-            placeholder="John"
-          />
-          <div id="first-name-error" class="error-message"></div>
+          <div class="form-input">
+            <input
+              type="text"
+              name="{{ form.first_name.html_name }}"
+              id="{{ form.first_name.id_for_label }}"
+              value="{{ form.first_name.value|default_if_none:'' }}"
+              placeholder="John"
+            />
+          </div>
         </div>
         <div class="form-group">
           <label for="{{ form.last_name.id_for_label }}" class="form-label"
             >Last Name:</label
           >
-          <input
-            type="text"
-            name="{{ form.last_name.html_name }}"
-            id="{{ form.last_name.id_for_label }}"
-            class="form-input"
-            value="{{ form.last_name.value|default_if_none:'' }}"
-            placeholder="Doe"
-          />
-          <div id="last-name-error" class="error-message"></div>
+          <div class="form-input">
+            <input
+              type="text"
+              name="{{ form.last_name.html_name }}"
+              id="{{ form.last_name.id_for_label }}"
+              value="{{ form.last_name.value|default_if_none:'' }}"
+              placeholder="Doe"
+            />
+          </div>
         </div>
         <div class="form-group">
           <label for="{{ form.email.id_for_label }}" class="form-label"
             >Email:</label
           >
-          <input
-            type="email"
-            name="{{ form.email.html_name }}"
-            id="{{ form.email.id_for_label }}"
-            class="form-input"
-            value="{{ form.email.value|default_if_none:'' }}"
-            placeholder="john.doe@example.com"
-          />
-          <div id="email-error" class="error-message"></div>
+          <div class="form-input">
+            <input
+              type="email"
+              name="{{ form.email.html_name }}"
+              id="{{ form.email.id_for_label }}"
+              value="{{ form.email.value|default_if_none:'' }}"
+              placeholder="john.doe@example.com"
+            />
+          </div>
         </div>
         <div class="form-group">
           <label for="{{ form.gp_code.id_for_label }}" class="form-label"
             >GP Code:</label
           >
-          <input
-            type="text"
-            name="{{ form.gp_code.html_name }}"
-            id="{{ form.gp_code.id_for_label }}"
-            class="form-input"
-            value="{{ form.gp_code.value|default_if_none:'' }}"
-            placeholder="Enter your GP code"
-          />
+          <div class="form-input">
+            <input
+              type="text"
+              name="{{ form.gp_code.html_name }}"
+              id="{{ form.gp_code.id_for_label }}"
+              value="{{ form.gp_code.value|default_if_none:'' }}"
+              placeholder="Enter your GP code"
+            />
+          </div>
         </div>
         <div class="submit-btn-wrapper">
           <button type="submit" class="btn-secondary submit-btn">Save</button>
