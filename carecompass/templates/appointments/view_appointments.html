@@ -1,27 +1,33 @@
 {% extends 'base.html' %} {% block content %}
-<button>
-  <a href="{% url 'appointments:book_appointment' %}">Book an Appointment</a>
-</button>
-<table>
-  <tr>
-    <th>Appointment type</th>
-    <th>Appointment date</th>
-    <th>Appointment time</th>
-    <th>Contact number</th>
-    <th>Notes</th>
-    <th>Actions</th>
-  </tr>
-  {% for appointment in appointments %}
-  <tr>
-    <td>{{ appointment.appointment_type }}</td>
-    <td>{{ appointment.date }}</td>
-    <td>{{ appointment.time }}</td>
-    <td>{{ appointment.contact_number }}</td>
-    <td>{{ appointment.user_notes }}</td>
-    <td>
-      <a href="{% url 'appointments:edit_appointment' appointment.id %}" class="edit-btn">Edit</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="content">
+  <div class="header">
+    <h2>Your appointments</h2>
+    <button>
+      <a href="{% url 'appointments:book_appointment' %}">Book an Appointment</a>
+    </button>
+  </div>
+  <table>
+    <tr>
+      <th>Appointment type</th>
+      <th>Appointment date</th>
+      <th>Appointment time</th>
+      <th>Contact number</th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
+    {% for appointment in appointments %}
+    <tr>
+      <td>{{ appointment.appointment_type }}</td>
+      <td>{{ appointment.date }}</td>
+      <td>{{ appointment.time }}</td>
+      <td>{{ appointment.contact_number }}</td>
+      <td>{{ appointment.user_notes }}</td>
+      <td>
+        <a href="{% url 'appointments:edit_appointment' appointment.id %}" class="edit-btn">Edit</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</div>
 {% endblock %}

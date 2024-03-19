@@ -29,6 +29,12 @@ $(".appointment-type").on("click", function () {
   changePhase("date-select");
 });
 
+var now = new Date(),
+  // minimum date the user can choose, in this case now and in the future
+  minDate = now.toISOString().substring(0, 10);
+
+$(".date-input").prop("min", minDate);
+
 $(".date-input").on("change", function () {
   const selectedDate = this.value;
   appointmentDetails.appointmentDate = selectedDate;
@@ -58,15 +64,27 @@ for (let hour = start; hour <= end; hour++) {
 $(".time-input").on("change", function () {
   const selectedTime = this.value;
   appointmentDetails.appointmentTime = selectedTime;
+  $(".initial-option").remove(); // ensures user cannot select placeholder option
   $(".time-selected").text(selectedTime);
   changePhase("contact-number");
 });
 
 $(".contact-number-input").on("change", function () {
-  const contactNumber = this.value;
-  appointmentDetails.contactNumber = contactNumber;
-  $(".contact-number-selected").text(contactNumber);
-  changePhase("additional-info");
+  let contactNumber = this.value;
+  contactNumber = contactNumber.replace(/\s/g, "");
+  const ukPhoneNumberRegex = /^(?:(?:\+|00)44|0)7(?:[45789]\d{2}|624)\d{6}$/;
+  if (!ukPhoneNumberRegex.test(contactNumber)) {
+    $(".contact-number-error").text("Please enter a valid UK phone number.");
+    $(".contact-number-input").addClass("error-border");
+  } else {
+    $(".contact-number-error").text("");
+    appointmentDetails.contactNumber = contactNumber;
+    if ($(".contact-number-input").hasClass("error-border")) {
+      $(".contact-number-input").removeClass("error-border");
+    }
+    $(".contact-number-selected").text(contactNumber);
+    changePhase("additional-info");
+  }
 });
 
 $(".appointment-submit").on("click", function () {

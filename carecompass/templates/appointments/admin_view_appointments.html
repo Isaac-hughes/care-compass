@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<button>
-  <a href="{% url 'appointments:book_appointment' %}">Book an Appointment</a>
-</button>
+<h2>Manage all appointments</h2>
 <table>
   <tr>
     <th>User</th>
@@ -20,9 +18,9 @@
     <td>{{ appointment.time }}</td>
     <td>{{ appointment.contact_number }}</td>
     <td>{{ appointment.user_notes }}</td>
-    <td>
-        <a href="{% url 'appointments:edit_appointment' appointment.id %}" class="edit-btn">Edit</a>
-        <button type="button" class="delete-btn" data-appointment-id="{{ appointment.id }}">Delete</button>
+    <td class="col">
+      <a href="{% url 'appointments:edit_appointment' appointment.id %}" class="edit-btn">Edit</a>
+      <a class="delete-btn" data-appointment-id="{{ appointment.id }}">Delete</a>
     </td>
   </tr>
   {% endfor %}

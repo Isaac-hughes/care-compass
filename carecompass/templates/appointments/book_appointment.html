@@ -35,7 +35,9 @@
         </div>
       </div>
       <div class="time-select">
-        <select id="time-input" class="time-input"></select>
+        <select id="time-input" class="time-input">
+          <option class="initial-option" value="00:00">-- --</option>
+        </select>
       </div>
     </div>
     <div class="contact-number-pane pane">
@@ -55,11 +57,14 @@
         </div>
       </div>
       <div class="contact-number">
-        <input
-          class="contact-number-input"
-          type="text"
-          placeholder="Contact Number"
-        />
+        <div class="form-input">
+          <input
+            class="contact-number-input"
+            type="tel"
+            placeholder="Enter your contact number e.g 07765 112334"
+          />
+        </div>
+        <div class="contact-number-error error-message"></div>
       </div>
     </div>
     <div class="additional-info-pane pane">
@@ -83,12 +88,14 @@
         </div>
       </div>
       <div class="additional-information">
-        <input
-          class="additional-info-input"
-          type="textArea"
-          placeholder="Additional Information"
-        />
-        <button class="appointment-submit">Submit appointment</button>
+        <div class="form-input">
+          <input
+            class="additional-info-input"
+            type="textArea"
+            placeholder="Additional Information"
+          />
+        </div>
+        <button class="appointment-submit btn-secondary">Submit appointment</button>
       </div>
     </div>
     <div class="summary-pane pane">

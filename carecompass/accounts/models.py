@@ -25,10 +25,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
-    gp_code = models.CharField(max_length=30, blank=True, null=True)  # Only relevant for patients
+    gp_code = models.CharField(max_length=30, blank=True, null=True) 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    is_admin = models.BooleanField(default=False)  # Determines if the user is an administrator
+    is_admin = models.BooleanField(default=False)  
     is_staff = models.BooleanField(default=False)  
 
     USERNAME_FIELD = 'email'
