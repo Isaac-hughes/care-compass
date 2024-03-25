@@ -8,6 +8,7 @@
     <th>Appointment time</th>
     <th>Contact number</th>
     <th>Notes</th>
+    <th>Admin Notes</th>
     <th>Actions</th>
   </tr>
   {% for appointment in appointments %}
@@ -18,6 +19,7 @@
     <td>{{ appointment.time }}</td>
     <td>{{ appointment.contact_number }}</td>
     <td>{{ appointment.user_notes }}</td>
+    <td>{{ appointment.admin_notes }}</td>
     <td class="col">
       <a href="{% url 'appointments:edit_appointment' appointment.id %}" class="edit-btn">Edit</a>
       <a class="delete-btn" data-appointment-id="{{ appointment.id }}">Delete</a>

@@ -66,18 +66,18 @@ def create_appointment(request):
     
 @login_required
 def edit_appointment(request, appointment_id):
-    if not request.user.is_admin:
-        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
-    else:
-        appointment = get_object_or_404(Appointment, id=appointment_id)
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+
+    if not request.user.is_administrator() and appointment.user != request.user:
+        return redirect('accounts:dashboard') 
 
     if request.method == 'POST':
-        form = AppointmentForm(request.POST, instance=appointment)
+        form = AppointmentForm(request.POST, instance=appointment, user=request.user)
         if form.is_valid():
             form.save()
             return redirect(VIEW_APPOINTMENTS)
     else:
-        form = AppointmentForm(instance=appointment)
+        form = AppointmentForm(instance=appointment, user=request.user)
 
     return render(request, 'appointments/edit_appointment.html', {'form': form})
 

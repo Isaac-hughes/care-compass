@@ -6,12 +6,15 @@
     {% for field in form %}
     <div class="form-group">
         <label>{{ field.label }}</label>
-        {{ field }}
+        <div class="input-field">
+            {{ field }}
+        </div>
         {% if field.errors %}
             {% for error in field.errors %}
                 <div class="error-message">{{ error }}</div>
             {% endfor %}
         {% endif %}
+
     </div>
     {% endfor %}
     <button type="submit" class="btn btn-primary">Save</button>
