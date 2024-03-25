@@ -49,9 +49,10 @@ def landing_view(request):
 
 @login_required
 def dashboard_view(request):
-    next_appointment = Appointment.objects.order_by('date', 'time').first()
+    next_appointment = Appointment.objects.filter(date__gte=datetime.now().date()).order_by('date', 'time').first()
+    previous_appointments = Appointment.objects.filter(date__lt=datetime.now().date()).order_by('-date', '-time')[:5]
     
-    return render(request, 'accounts/dashboard.html', {'next_appointment': next_appointment})
+    return render(request, 'accounts/dashboard.html', {'next_appointment': next_appointment, 'previous_appointments': previous_appointments})
 
 def logout_view(request):
     logout(request)

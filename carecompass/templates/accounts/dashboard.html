@@ -5,11 +5,23 @@
 <p>Welcome {{ user.first_name }} to your dashboard!</p>
 <h2>Next appointment</h2>
 {% if next_appointment %}
-<p>Your next appointment is on <strong>{{ next_appointment }}</strong>.</p>
+<p>Your next appointment is on <strong>{{ next_appointment.date }} at {{ next_appointment.time }}</strong></p>
 {% else %}
 <p>You have no upcoming appointments.</p>
 {% endif %}
+
+<h2>Previous appointments</h2>
+{% if previous_appointments %}
+<ul>
+    {% for appointment in previous_appointments %}
+    <li>{{ appointment.date }} at {{ appointment.time }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>You have no previous appointments.</p>
 {% endif %}
+{% endif %}
+
 
 {% if user.is_admin %}
 <h1>Dashboard</h1>
