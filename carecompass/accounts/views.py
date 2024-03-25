@@ -75,4 +75,4 @@ def custom_handler404(request, exception):
 
 
 def custom_handler500(request):
-    return render(request, '500.html', {}, status=404)
+    return render(request, '500.html', {}, status=500)

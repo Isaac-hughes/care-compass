@@ -57,6 +57,16 @@ form {
   border: none;
 }
 
+.form-input textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #f5f7fa;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
 .form-input input::placeholder {
   font-size: 10px;
 }
