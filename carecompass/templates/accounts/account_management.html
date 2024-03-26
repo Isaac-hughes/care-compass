@@ -4,63 +4,32 @@
   <div class="form-tile">
     <form id="update-user-form" method="post">
       {% csrf_token %}
+
+      {% if form.non_field_errors %}
+        <div class="error-messages">
+          {% for error in form.non_field_errors %}
+            <p class="error">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
       <div class="form-fields-wrapper">
-        <div class="form-group">
-          <label for="{{ form.first_name.id_for_label }}" class="form-label"
-            >First Name:</label
-          >
-          <div class="form-input">
-            <input
-              type="text"
-              name="{{ form.first_name.html_name }}"
-              id="{{ form.first_name.id_for_label }}"
-              value="{{ form.first_name.value|default_if_none:'' }}"
-              placeholder="John"
-            />
+        <div class="form-fields-wrapper">
+        {% for field in form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+            <div class="form-input">
+              {{ field }}
+              <!-- Display field-specific errors -->
+              {% if field.errors %}
+                {% for error in field.errors %}
+                  <div class="error-message">{{ error }}</div>
+                {% endfor %}
+              {% endif %}
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="{{ form.last_name.id_for_label }}" class="form-label"
-            >Last Name:</label
-          >
-          <div class="form-input">
-            <input
-              type="text"
-              name="{{ form.last_name.html_name }}"
-              id="{{ form.last_name.id_for_label }}"
-              value="{{ form.last_name.value|default_if_none:'' }}"
-              placeholder="Doe"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="{{ form.email.id_for_label }}" class="form-label"
-            >Email:</label
-          >
-          <div class="form-input">
-            <input
-              type="email"
-              name="{{ form.email.html_name }}"
-              id="{{ form.email.id_for_label }}"
-              value="{{ form.email.value|default_if_none:'' }}"
-              placeholder="john.doe@example.com"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="{{ form.gp_code.id_for_label }}" class="form-label"
-            >GP Code:</label
-          >
-          <div class="form-input">
-            <input
-              type="text"
-              name="{{ form.gp_code.html_name }}"
-              id="{{ form.gp_code.id_for_label }}"
-              value="{{ form.gp_code.value|default_if_none:'' }}"
-              placeholder="Enter your GP code"
-            />
-          </div>
-        </div>
+        {% endfor %}
+
         <div class="submit-btn-wrapper">
           <button type="submit" class="btn-secondary submit-btn">Save</button>
         </div>
