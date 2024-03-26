@@ -12,8 +12,7 @@ class AppointmentForm(forms.ModelForm):
         
         if self.user and self.user.is_administrator():
             self.fields['admin_notes'] = forms.CharField(widget=forms.Textarea, required=False)
-        if self.instance and self.instance.pk:
-            self.fields['admin_notes'].initial = self.instance.admin_notes
+
 
     def save(self, commit=True):
         instance = super().save(commit=False)

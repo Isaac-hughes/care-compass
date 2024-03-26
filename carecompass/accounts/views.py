@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages 
 from django.shortcuts import render, redirect
 from datetime import datetime
 from .forms import PatientSignUpForm, PatientUpdateForm
@@ -38,6 +39,10 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect(DASHBOARD)
+            else:
+                messages.error(request, 'Invalid username or password.')  # Add an error message
+        else:
+            messages.error(request, 'Invalid username or password.')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
@@ -49,8 +54,9 @@ def landing_view(request):
 
 @login_required
 def dashboard_view(request):
-    next_appointment = Appointment.objects.filter(date__gte=datetime.now().date()).order_by('date', 'time').first()
-    previous_appointments = Appointment.objects.filter(date__lt=datetime.now().date()).order_by('-date', '-time')[:5]
+    user_appointments = Appointment.objects.filter(user=request.user)
+    next_appointment = user_appointments.filter(date__gte=datetime.now().date()).order_by('date', 'time').first()
+    previous_appointments = user_appointments.filter(date__lt=datetime.now().date()).order_by('-date', '-time')[:5]
     
     return render(request, 'accounts/dashboard.html', {'next_appointment': next_appointment, 'previous_appointments': previous_appointments})
 

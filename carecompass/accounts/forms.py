@@ -20,7 +20,7 @@ class PatientSignUpForm(forms.ModelForm):
         self.fields['password'].widget.attrs.update({'placeholder': '*********'})
 
     def clean_email(self):
-        email = self.cleaned_data.get('email')
+        email = self.cleaned_data.get('email').lower()
         if not email:
             raise ValidationError('Please enter an email address.')
         if User.objects.filter(email=email).exists():
